@@ -1,4 +1,3 @@
-import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 
 
@@ -6,37 +5,30 @@ import PropTypes from "prop-types";
 // CSS Import
 import "./Navbar.css";
 
-// Service Import
-import authService from "../../services/auth.service";
 
-import { useHistory } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 
 function Navbar(props) {
-  let history = useHistory();
+  let history = (useNavigate);
 
 
   const handleItemClick = (path) => {
-    history.push(path);
+    history(path);
   };
 
-  const handleLogout = () => {
-    authService.logout();
-    window.location.replace("/login");
-  };
+
 
   const Routes = [
     {
-      name: `${t("tvshows")}`,
+      name: "Tv Shows",
       link: "/tv-shows",
     },
     {
-      name: `${t("movies")}`,
+      name: "Movies",
       link: "/movies",
     },
-    {
-      name: `${t("kids")}`,
-      link: "/kids",
-    },
+  
   ];
 
 
@@ -49,7 +41,6 @@ function Navbar(props) {
       }}
     >
       <a
-        role="button"
         onClick={() => handleItemClick("/home")}
         className="navbar-brand"
       >
@@ -76,7 +67,6 @@ function Navbar(props) {
           {Routes.map((item) => (
             <li key={item.name} className="nav-item mx-2">
               <a
-                role="button"
                 className="nav-link"
                 onClick={() => handleItemClick(item.link)}
               >

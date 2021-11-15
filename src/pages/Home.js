@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 
 // Carousel Import
 import Carousel from "@brainhubeu/react-carousel";
@@ -19,7 +19,6 @@ import { GlobalContext } from "../context/GlobalState";
 import { useNavigate } from "react-router-dom";
 
 function Home(props) {
-  const [isAdded, setisAdded] = useState(false);
 
   let history = useNavigate();
 
@@ -29,19 +28,16 @@ function Home(props) {
     trendingTVShows,
     fetchTrendingMovies,
     fetchTrendingTVShows,
-    fetchTrendingPerson,
   } = useContext(GlobalContext);
 
- 
 
   const handleItemClick = (path) => {
-    history.push(path);
+    history(path);
   };
 
   useEffect(() => {
     fetchTrendingMovies();
     fetchTrendingTVShows();
-    fetchTrendingPerson();
   }, []);
 
   return (

@@ -42,23 +42,24 @@ export default function Slider({
                   marginRight: 40,
                   borderRadius: 15,
                 }}
+                alt={item.original_title}
                 src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
               />
-              <h1
+              <h3
                 style={{
-                  fontSize: "4em",
+                  fontSize: "3em",
                   fontWeight: "bold",
                 }}
               >
                 {item.original_title}
-              </h1>
+              </h3>
               <button
                 type="button"
                 className="btn btn-outline-warning btn-lg my-3"
               >
                 <AiOutlineStar /> IMDB {item.vote_average}
               </button>
-              <h3>{item.overview}</h3>
+              <h4>{item.overview}</h4>
               <MoreInfo
                 id={item.id}
                 type="movie"
