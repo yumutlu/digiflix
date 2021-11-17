@@ -1,41 +1,12 @@
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
-
-
 // CSS Import
 import "./Footer.css";
 
 
 
-import { useNavigate } from "react-router-dom";
 
 function Footer(props) {
-  let history = (useNavigate);
-
-
-  const handleItemClick = (path) => {
-    history(path);
-  };
-
-
-
-  const Routes = [
-    {
-      name: "Tv Shows",
-      link: "/tv-shows",
-      
-    },
-    {
-      name: "Movies",
-      link: "/movies",
-    },
-    {
-      name:"Contact",
-      link:"/Contact"
-    }
-  
-  ];
-
 
   return (
     <nav
