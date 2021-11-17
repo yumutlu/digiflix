@@ -1,24 +1,10 @@
 import PropTypes from "prop-types";
-
-
-
+import { Link } from 'react-router-dom';
 // CSS Import
 import "./Navbar.css";
 
 
-
-import { useNavigate } from "react-router-dom";
-
 function Navbar(props) {
-  let history = (useNavigate);
-
-
-  const handleItemClick = (path) => {
-    history(path);
-  };
-
-
-
   const Routes = [
     {
       name: "Tv Shows",
@@ -30,8 +16,6 @@ function Navbar(props) {
     },
   
   ];
-
-
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark bg-black fixed-top"
@@ -40,16 +24,13 @@ function Navbar(props) {
         paddingRight: 20,
       }}
     >
-      <a
-        onClick={() => handleItemClick("/home")}
-        className="navbar-brand"
-      >
+     <Link className="navbar-brand" to="/">
         <img
           src={`http://${window.location.host}/logo.png`}
           height="40"
           alt="logo"
         />
-      </a>
+     </Link> 
       <button
         className="navbar-toggler"
         type="button"
@@ -66,20 +47,12 @@ function Navbar(props) {
         <ul className="nav navbar-nav navbar-right">
           {Routes.map((item) => (
             <li key={item.name} className="nav-item mx-2">
-              <a
-                className="nav-link"
-                onClick={() => handleItemClick(item.link)}
-              >
+              <Link to={item.link} className="nav-link">
                 {item.name}
-              </a>
+              </Link>
+            
             </li>
           ))}
-
-          
-
-         
-         
-      
         </ul>
       </div>
     </nav>

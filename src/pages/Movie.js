@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
-
+import { useParams} from "react-router-dom";
 // React Icon Import
-import { AiOutlineStar } from "react-icons/ai";
 
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
@@ -21,10 +20,8 @@ import { GlobalContext } from "../context/GlobalState";
 function Movie({ match, location }) {
 
   let history = useNavigate();
-
+  const params = useParams();  
   const {
-    movieCart,
-    addToMovieCart,
     getCurrentMovie,
     currentMovie,
     getCurrentGenres,
@@ -38,10 +35,10 @@ function Movie({ match, location }) {
   };
 
   useEffect(() => {
-    getCurrentMovie(match.params.id);
-    getCurrentGenres(match.params.id);
-    getSimilarMovies(match.params.id);
-  }, [match.params.id]);
+    getCurrentMovie(params.id);
+    getCurrentGenres(params.id);
+    getSimilarMovies(params.id);
+  }, [params.id]);
 
   return (
     <DetailLayout>
@@ -58,7 +55,7 @@ function Movie({ match, location }) {
                 }}
 
                 alt={currentMovie.title}
-                src={`https://image.tmdb.org/t/p/original/${currentMovie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${currentMovie.poster_path}`}
               />
               <h3
                 style={{
@@ -70,9 +67,15 @@ function Movie({ match, location }) {
               </h3>
               <button
                 type="button"
+                className="btn btn-outline-info btn-sm mr-3"
+              >
+                 {currentMovie.release_date}
+              </button>
+              <button
+                type="button"
                 className="btn btn-outline-warning btn-sm my-3"
               >
-                <AiOutlineStar /> IMDB {currentMovie.vote_average}
+                IMDB {currentMovie.vote_average}
               </button>
               {currentGenres &&
                 currentGenres.map((genre) => (

@@ -1,30 +1,21 @@
-import React, { useEffect, useState, useContext } from "react";
-
+import React, { useEffect, useContext } from "react";
+import { useParams} from "react-router-dom";
 // React Icon Import
 import { AiOutlineStar } from "react-icons/ai";
-
 import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
-
-
-
 // Router Import
 import { useNavigate } from "react-router-dom";
-
 // Component Import
 import Card from "../components/Card/Card";
 import InfoSlider from "../components/InfoSlider/InfoSlider";
-
 // Layout Import
 import DetailLayout from "../layouts/DetailLayout";
-
 // Context
 import { GlobalContext } from "../context/GlobalState";
-
 function TVShow({ match, location }) {
-
   let history = useNavigate();
-
+const params = useParams()
 
   const {
     getCurrentTVShow,
@@ -42,11 +33,10 @@ function TVShow({ match, location }) {
   };
 
   useEffect(() => {
-    getCurrentTVShow(match.params.id);
-    getCurrentGenres(match.params.id);
-    getSimilarTVShows(match.params.id);
-  }, [match.params.id]);
-
+    getCurrentTVShow(params.id);
+    getCurrentGenres(params.id);
+    getSimilarTVShows(params.id);
+  }, [params.id]);
   return (
     <DetailLayout>
       <InfoSlider>
@@ -61,7 +51,7 @@ function TVShow({ match, location }) {
                   borderRadius: 15,
                 }}
                 alt=""
-                src={`https://image.tmdb.org/t/p/original/${currentTVShow.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${currentTVShow.poster_path}`}
               />
               <h3
                 style={{
@@ -75,6 +65,7 @@ function TVShow({ match, location }) {
                 type="button"
                 className="btn btn-outline-warning btn-lg my-3"
               >
+
                 <AiOutlineStar /> IMDB {currentTVShow.vote_average}
               </button>
               {currentGenres &&
@@ -88,10 +79,11 @@ function TVShow({ match, location }) {
                   </button>
                 ))}
               <h3>{currentTVShow.overview}</h3>
-    
+
             </div>
           </div>
         )}
+        
       </InfoSlider>
       <h4 className="text-white pl-2 pt-4">
        Similar Tv Show

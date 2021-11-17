@@ -104,33 +104,26 @@ export const GlobalProvider = ({ children }) => {
 
 
 
-
+const values={
+  trendingMovies: state.trendingMovies,
+  trendingTVShows: state.trendingTVShows,
+  similarMovies: state.similarMovies,
+  similarTVShows: state.similarTVShows,
+  currentMovie: state.currentMovie,
+  currentTVShow: state.currentTVShow,
+  currentGenres: state.currentGenres,
+  getCurrentMovie,
+  getCurrentTVShow,
+  getCurrentGenres,
+  getSimilarMovies,
+  getSimilarTVShows,
+  fetchTrendingMovies,
+  fetchTrendingTVShows,
+}
 
 
 
   return (
-    <GlobalContext.Provider
-      value={{
-        movieCart: state.movieCart,
-        tvshowCart: state.tvshowCart,
-        trendingMovies: state.trendingMovies,
-        trendingTVShows: state.trendingTVShows,
-        similarMovies: state.similarMovies,
-        similarTVShows: state.similarTVShows,
-        currentMovie: state.currentMovie,
-        currentTVShow: state.currentTVShow,
-        currentGenres: state.currentGenres,
-        getCurrentMovie,
-        getCurrentTVShow,
-        getCurrentGenres,
-        getSimilarMovies,
-        getSimilarTVShows,
-        fetchTrendingMovies,
-        fetchTrendingTVShows,
-     
-      }}
-    >
-      {children}
-    </GlobalContext.Provider>
+    <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
   );
 };

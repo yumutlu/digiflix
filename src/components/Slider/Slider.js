@@ -1,17 +1,11 @@
-
 // React Icon Import
 import { AiOutlineStar } from "react-icons/ai";
-
 // Carousel Import
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-
-
 // Component Import
 import InfoSlider from "../InfoSlider/InfoSlider";
 import MoreInfo from "../Buttons/MoreInfo";
-
-
 import "./Slider.css";
 
 export default function Slider({
@@ -33,8 +27,8 @@ export default function Slider({
         useKeyboardArrows={true}
       >
         {trendingMovies &&
-          trendingMovies.map((item) => (
-            <div key={item.id} className="text-white" style={{ width: "80vw" }}>
+          trendingMovies.map((item,i) => (
+            <div key={i} className="text-white" style={{ width: "80vw" }}>
               <img
                 style={{
                   float: "left",
@@ -43,7 +37,7 @@ export default function Slider({
                   borderRadius: 15,
                 }}
                 alt={item.original_title}
-                src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
               />
               <h3
                 style={{
